@@ -1,13 +1,27 @@
-import React from "react";
-import ModuleName from '@/pages/test';
+import { Suspense } from 'react';
+import { useRoutes } from 'react-router-dom';
+
+import { ErrorBoundary, ErrorFallback } from '@/core/error/error-boundary';
+import { SplashScreen } from '@/core/splash-screen';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routing from './routing';
 
 const App = () => {
-  // const [first, setfirst] = React.useState(false)
   return (
-    <div>
-      <p className='text-red-500'>hell22222o</p>
-      <ModuleName/>
-    </div>
+    <ErrorBoundary
+      fallback={
+        <ErrorFallback
+          error={new Error('Something went wrong')}
+          resetErrorBoundary={() => window.location.reload()}
+        />
+      }
+    >
+      <Suspense fallback={<SplashScreen />}>
+        <Router>
+          <Routing />
+        </Router>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 
