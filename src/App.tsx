@@ -1,6 +1,4 @@
 import { Suspense } from 'react';
-import { useRoutes } from 'react-router-dom';
-
 import { ErrorBoundary, ErrorFallback } from '@/core/error/error-boundary';
 import { SplashScreen } from '@/core/splash-screen';
 import { BrowserRouter as Router } from 'react-router-dom';
