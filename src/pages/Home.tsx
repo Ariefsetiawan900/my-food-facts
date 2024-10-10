@@ -8,6 +8,8 @@ import queryString from 'query-string';
 import { useDebounce } from 'use-debounce';
 import { ApiResponse, IProduct } from '@/interfaces/globalInterfaces';
 import CardList from '@/components/cardList';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,7 +27,9 @@ const Home = () => {
 
   const [debouncedSearch] = useDebounce(searchCategoriesTag, 500);
 
-  const { data, isLoading, isError, error, isFetching, refetch } = useQuery<
+  const { data, isLoading,
+    //  isError, error, isFetching, refetch
+     } = useQuery<
     ApiResponse,
     Error
   >({
@@ -60,7 +64,6 @@ const Home = () => {
           type="text"
           className="w-1/2"
           value={searchCategoriesTag}
-          // value={inputValue}
           onChange={handleSearchChange}
           placeholder="Type and search, for example: Food"
           sizing="lg"
@@ -73,12 +76,21 @@ const Home = () => {
       />
 
       <div className="flex overflow-x-auto sm:justify-center mt-10">
-        <Pagination
-          currentPage={parseInt(queryPage as string, 10)}
-          totalPages={Number(data?.count) || 100}
-          onPageChange={handlePageClick}
-          showIcons
-        />
+        {isLoading ? (
+          <Skeleton
+            className="animate-pulse rounded-md"
+            count={1}
+            width={400}
+            height={45}
+          />
+        ) : (
+          <Pagination
+            currentPage={parseInt(queryPage as string, 10)}
+            totalPages={Number(data?.count) || 100}
+            onPageChange={handlePageClick}
+            showIcons
+          />
+        )}
       </div>
     </div>
   );
