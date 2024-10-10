@@ -12,16 +12,21 @@
   "dependencies": {
     "@tanstack/react-query": "^5.59.0",
     "@tanstack/react-query-devtools": "^5.59.0",
+    "@types/lodash": "^4.17.10",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.7",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.1",
     "flowbite-react": "^0.10.2",
+    "lodash": "^4.17.21",
     "prettier": "^3.3.3",
+    "query-string": "^9.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-loading-skeleton": "^3.5.0",
     "react-router-dom": "^6.26.2",
+    "use-debounce": "^10.0.3",
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
