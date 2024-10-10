@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { IProduct } from '@/interfaces/globalInterfaces';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useNavigate } from 'react-router-dom';
 
 interface ICarcListProps {
   dataProduct: IProduct[];
@@ -12,6 +13,7 @@ const CardList: FC<ICarcListProps> = ({
   dataProduct,
   isLoadingDataProducts,
 }) => {
+    const navigate = useNavigate()
   if (isLoadingDataProducts) {
     return (
       <div className="p-1 flex flex-wrap gap-10 items-center justify-center">
@@ -58,7 +60,8 @@ const CardList: FC<ICarcListProps> = ({
       {dataProduct.map((product) => (
         <div
           key={product._id}
-          className="flex-shrink-0 w-80 h-[450px] relative overflow-hidden bg-blue-500 rounded-lg max-w-xs  shadow-lg "
+          className="flex-shrink-0 w-80 h-[450px] relative overflow-hidden bg-blue-500 rounded-lg max-w-xs  shadow-lg cursor-pointer"
+          onClick={()=>navigate(`/detail/${product._id}`)}
         >
           <svg
             className="absolute bottom-0 left-0 mb-8"
