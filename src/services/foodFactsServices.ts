@@ -1,6 +1,16 @@
 import axiosConfig from './axiosConfig';
+import queryString from 'query-string';
 
-export const getAllFoodFacts = async (page: 1) => {
-  const response = await axiosConfig.get(`/?page=${page}&page_size=7`);
-  return response;
+export const getAllFoodFacts = async (
+  categories_tags: string,
+  page: number
+) => {
+  const response = await axiosConfig.get('/', {
+    params: {
+      page,
+      categories_tags,
+      page_size: 5,
+    },
+  });
+  return response.data;
 };
