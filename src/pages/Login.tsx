@@ -57,6 +57,7 @@ const Login = () => {
               type="submit"
               fullSized
               disabled={!isValidUsername(username) || isSubmitting}
+              isProcessing={isSubmitting}
             >
               {isSubmitting ? 'Loading...' : 'Submit'}
             </Button>
