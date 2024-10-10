@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://world.openfoodfacts.org/api/v2/search';
+const baseURL = 'https://world.openfoodfacts.org/api/v2';
 
 const axiosConfig = axios.create({
   baseURL,
