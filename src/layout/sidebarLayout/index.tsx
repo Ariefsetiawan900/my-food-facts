@@ -1,34 +1,35 @@
 import { Fragment, ReactNode, FC, useState } from 'react';
 import {
   TextInput,
-  Pagination,
   Button,
   Drawer,
   Label,
   Textarea,
+  Modal,
 } from 'flowbite-react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaRegSmileBeam } from 'react-icons/fa';
+import { isValidInput } from '@/utils/globalUtils';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 interface SidebarLayoutProps {
   children: ReactNode;
 }
 const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
-const navigate = useNavigate()
-const getUsername = localStorage.getItem('username');
+  const navigate = useNavigate();
+  const getUsername = localStorage.getItem('username');
 
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
+  const [isOpenModalLogout, setIsOpenModalLogout] = useState<boolean>(false);
   const [inputSearchSidebar, setInputSearchSidebar] = useState<string>('');
 
-  const handleSearchSidebar = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    // setSearchCategoriesTag(inputSearchSidebar);
-    navigate(`?page=1&searchCategories=${inputSearchSidebar}`);
+  const handleSearchSidebar = () => {
+    window.location.href = `/?page=1&searchCategories=${inputSearchSidebar}`;
     setIsOpenSidebar(false);
   };
   const handleLogout = () => {
-    localStorage.removeItem('username'); // Hapus user dari localStorage
-    navigate('/login'); // Redirect ke halaman login
+    localStorage.removeItem('username');
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -39,7 +40,7 @@ const getUsername = localStorage.getItem('username');
       >
         <Button>Click Me</Button>
       </div>
-      <Fragment>{children}</Fragment>
+      {children}
 
       <Drawer
         open={isOpenSidebar}
@@ -51,7 +52,7 @@ const getUsername = localStorage.getItem('username');
         />
         <Drawer.Items>
           <div>
-            <form onSubmit={() => handleSearchSidebar}>
+            <div className='border-b-4 border-blue-500 mb-5'>
               <div className="mb-6 mt-3">
                 <Label htmlFor="search" className="mb-2 block">
                   Search Categories
@@ -68,13 +69,17 @@ const getUsername = localStorage.getItem('username');
                 />
               </div>
               <div className="mb-6">
-                <Button type="submit" className="w-full">
+                <Button
+                  disabled={!isValidInput(inputSearchSidebar, 1)}
+                  className="w-full"
+                  onClick={handleSearchSidebar}
+                >
                   Click and Search
                 </Button>
               </div>
-            </form>
+            </div>
 
-            <form className="mb-8">
+            <form className="border-b-4 border-blue-500 mb-5 pb-5">
               <div>
                 <h1 className="text-xl font-bold">Contact Us</h1>
                 <h5 className="text-sm text-gray-500">
@@ -114,13 +119,46 @@ const getUsername = localStorage.getItem('username');
               </div>
             </form>
             <div>
-              <Button color="failure" fullSized onClick={handleLogout}>
+              <Button
+                color="failure"
+                fullSized
+                onClick={() => setIsOpenModalLogout(true)}
+              >
                 LOGOUT
               </Button>
             </div>
           </div>
         </Drawer.Items>
       </Drawer>
+
+{/* Modal Logout */}
+      <Modal
+        show={isOpenModalLogout}
+        size="md"
+        onClose={() => setIsOpenModalLogout(!isOpenModalLogout)}
+        popup
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle size={20} className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+            Are you sure you want to log out?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button color="failure" onClick={handleLogout}>
+                {"Yes, I'm sure"}
+              </Button>
+              <Button
+                color="gray"
+                onClick={() => setIsOpenModalLogout(!isOpenModalLogout)}
+              >
+                No, cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </Fragment>
   );
 };

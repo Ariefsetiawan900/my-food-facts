@@ -1,32 +1,31 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Label, TextInput } from 'flowbite-react';
+import { isValidInput } from '@/utils/globalUtils';
 
 const Login = () => {
   const [username, setUsername] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const isValidUsername = (name: string) => {
-    return name.length >= 5 && name.length <= 50;
-  };
   useEffect(() => {
+    document.title = 'Login - My Food Facts';
     const isAuthenticated = !!localStorage.getItem('username');
     if (isAuthenticated) {
-      navigate('/'); // Redirect ke home jika sudah login
+      navigate('/');
     }
   }, [navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isValidUsername(username)) {
+    if (isValidInput(username)) {
       setIsSubmitting(true);
 
       setTimeout(() => {
         localStorage.setItem('username', username);
         setIsSubmitting(false);
 
-        navigate('/');
+        navigate('/', { replace: true });
       }, 2000);
     }
   };
@@ -48,21 +47,12 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            {/* <label className="block text-gray-700 font-bold mb-2" for="email">
-              Email
-            </label>
-            <input
-              className="w-full px-4 py-2 rounded-lg border border-gray-400"
-              id="email"
-              name="email"
-              type="email"
-            /> */}
           </div>
           <div>
             <Button
               type="submit"
               fullSized
-              disabled={!isValidUsername(username) || isSubmitting}
+              disabled={!isValidInput(username) || isSubmitting}
               isProcessing={isSubmitting}
             >
               {isSubmitting ? 'Loading...' : 'Submit'}

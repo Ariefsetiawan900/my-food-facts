@@ -134,6 +134,14 @@ const cardDetail: FC<ICardDetailProps> = ({
       </div>
     );
   }
+
+  if (!dataProduct || !dataProduct.product) {
+    return (
+      <div className="text-center text-2xl font-bold text-white">
+        Data Not Available
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-gray-100 dark:bg-gray-800 py-8 lg:rounded sm:rounded-none ">
@@ -177,7 +185,7 @@ const cardDetail: FC<ICardDetailProps> = ({
                         Fat:
                       </span>
                       <span className="text-gray-600 dark:text-gray-300">
-                        {dataProduct?.product.nutrient_levels.fat || "-"}
+                        {dataProduct?.product.nutrient_levels.fat || '-'}
                       </span>
                     </div>
                     <div className="mr-2">
@@ -185,7 +193,7 @@ const cardDetail: FC<ICardDetailProps> = ({
                         Salt:
                       </span>
                       <span className="text-gray-600 dark:text-gray-300">
-                        {dataProduct?.product.nutrient_levels.salt ||"-"}
+                        {dataProduct?.product.nutrient_levels.salt || '-'}
                       </span>
                     </div>
                   </div>

@@ -13,7 +13,7 @@ const CardList: FC<ICarcListProps> = ({
   dataProduct,
   isLoadingDataProducts,
 }) => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   if (isLoadingDataProducts) {
     return (
       <div className="p-1 flex flex-wrap gap-10 items-center justify-center">
@@ -55,13 +55,21 @@ const CardList: FC<ICarcListProps> = ({
       </div>
     );
   }
+
+  if (dataProduct.length === 0 || !dataProduct) {
+    return (
+      <div className="text-center text-2xl font-bold text-white">
+        Data Not Available
+      </div>
+    );
+  }
   return (
     <div className="p-1 flex flex-wrap gap-10 items-center justify-center">
       {dataProduct.map((product) => (
         <div
           key={product._id}
           className="flex-shrink-0 w-80 h-[450px] relative overflow-hidden bg-blue-500 rounded-lg max-w-xs  shadow-lg cursor-pointer"
-          onClick={()=>navigate(`/detail/${product._id}`)}
+          onClick={() => navigate(`/detail/${product._id}`)}
         >
           <svg
             className="absolute bottom-0 left-0 mb-8"

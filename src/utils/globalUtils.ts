@@ -16,3 +16,7 @@ export const getTextColorNovaGroupColor = (name: string) => {
       return '';
   }
 };
+
+export const isValidInput = (text: string, min = 5, max = 50) => {
+  return text.length >= min && text.length <= max;
+};

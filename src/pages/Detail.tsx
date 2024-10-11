@@ -7,27 +7,40 @@ import {
 } from '@/interfaces/globalInterfaces';
 import { getDetailFoodFacts } from '@/services/foodFactsServices';
 import { Button, Modal, List } from 'flowbite-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { formatKey } from '@/utils/globalUtils';
 import CardDetail from '@/components/cardDetail';
+import SidebarLayout from '@/layout/sidebarLayout';
+import CardDynamic from '@/components/cardDynamic';
 
 const Detail = () => {
   const { id_product } = useParams<{ id_product: string }>();
   const [openModalNutiments, setOpenModalNutriments] = useState(false);
   const [openModalNutriscore, setOpenModalNutriscore] = useState(false);
 
-  const {
-    data,
-    isLoading,
-    //  isError, error, isFetching, refetch
-  } = useQuery<ApiResponseDetail, Error>({
+  const { data, isLoading, isError, error, refetch } = useQuery<
+    ApiResponseDetail,
+    Error
+  >({
     queryKey: ['getDetailFoodFacts', Number(id_product)],
     queryFn: () => getDetailFoodFacts(Number(id_product)),
   } as UseQueryOptions<ApiResponseDetail, Error>);
 
-  console.log('nutriscore_data', data?.product.nutriscore_data);
+  useEffect(() => {
+    document.title = `${data?.product?.product_name || 'Detail page'} - My Food Facts`;
+  }, []);
+
+  if (isError) {
+    <CardDynamic
+      title="Error page"
+      body={error.message}
+      buttonText="Retry"
+      onClick={refetch}
+    />;
+  }
+
   return (
-    <>
+    <SidebarLayout>
       <CardDetail
         dataProduct={data as ApiResponseDetail}
         setOpenModalNutriments={setOpenModalNutriments}
@@ -90,7 +103,7 @@ const Detail = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </SidebarLayout>
   );
 };
 
