@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Label, TextInput } from 'flowbite-react';
 
@@ -10,6 +10,12 @@ const Login = () => {
   const isValidUsername = (name: string) => {
     return name.length >= 5 && name.length <= 50;
   };
+  useEffect(() => {
+    const isAuthenticated = !!localStorage.getItem('username');
+    if (isAuthenticated) {
+      navigate('/'); // Redirect ke home jika sudah login
+    }
+  }, [navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
