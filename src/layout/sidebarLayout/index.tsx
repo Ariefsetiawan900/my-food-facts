@@ -35,7 +35,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
   return (
     <Fragment>
       <div
-        className="fixed top-4 left-4"
+        className="fixed top-4 left-4 z-50"
         onClick={() => setIsOpenSidebar(!isOpenSidebar)}
       >
         <Button>Click Me</Button>
