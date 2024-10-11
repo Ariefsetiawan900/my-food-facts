@@ -43,9 +43,12 @@ const cardDetail: FC<ICardDetailProps> = ({
                 </div>
                 <div className="flex -mx-2 mb-4">
                   <div className="w-1/2 px-2">
-                    <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">
-                      Add to Cart
-                    </button>
+                    <Skeleton
+                      className="animate-pulse rounded-md"
+                      count={1}
+                      width={90}
+                      height={45}
+                    />
                   </div>
                 </div>
               </div>
@@ -137,9 +140,9 @@ const cardDetail: FC<ICardDetailProps> = ({
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row -mx-4">
             <div className="md:flex-1 px-4">
-              <div className=" rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+              <div className="flex justify-center rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                 <img
-                  className="w-full h-full object-cover"
+                  className=" h-full object-cover"
                   src={
                     dataProduct?.product.image_url ||
                     '/src/assets/image_not_available.png'
@@ -174,7 +177,7 @@ const cardDetail: FC<ICardDetailProps> = ({
                         Fat:
                       </span>
                       <span className="text-gray-600 dark:text-gray-300">
-                        {dataProduct?.product.nutrient_levels.fat}
+                        {dataProduct?.product.nutrient_levels.fat || "-"}
                       </span>
                     </div>
                     <div className="mr-2">
@@ -182,7 +185,7 @@ const cardDetail: FC<ICardDetailProps> = ({
                         Salt:
                       </span>
                       <span className="text-gray-600 dark:text-gray-300">
-                        {dataProduct?.product.nutrient_levels.salt}
+                        {dataProduct?.product.nutrient_levels.salt ||"-"}
                       </span>
                     </div>
                   </div>
@@ -202,7 +205,7 @@ const cardDetail: FC<ICardDetailProps> = ({
                         Sugars:
                       </span>
                       <span className="text-gray-600 dark:text-gray-300">
-                        {dataProduct?.product.nutrient_levels.sugars}
+                        {dataProduct?.product.nutrient_levels.sugars || '-'}
                       </span>
                     </div>
                   </div>
