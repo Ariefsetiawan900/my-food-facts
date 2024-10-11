@@ -35,7 +35,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
   return (
     <Fragment>
       <div
-        className="fixed top-4 left-4 z-50"
+        className="fixed top-4 left-4 z-40"
         onClick={() => setIsOpenSidebar(!isOpenSidebar)}
       >
         <Button>Click Me</Button>
@@ -118,7 +118,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
                 <Button color="purple">Submit</Button>
               </div>
             </form>
-            <div>
+            <div className='mb-8 lg:mb-0'>
               <Button
                 color="failure"
                 fullSized

@@ -88,7 +88,7 @@ const Home = () => {
           isLoadingDataProducts={isLoading}
         />
 
-        <div className="flex overflow-x-auto sm:justify-center mt-10">
+        <div className="flex overflow-x-auto sm:justify-center mt-10 mb-16">
           {isLoading ? (
             <Skeleton
               className="animate-pulse rounded-md"
