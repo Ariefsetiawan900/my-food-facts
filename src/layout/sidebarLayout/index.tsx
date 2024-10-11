@@ -52,7 +52,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
         />
         <Drawer.Items>
           <div>
-            <div className='border-b-4 border-blue-500 mb-5'>
+            <div className="border-b-4 border-blue-500 mb-5">
               <div className="mb-6 mt-3">
                 <Label htmlFor="search" className="mb-2 block">
                   Search Categories
@@ -131,7 +131,7 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
         </Drawer.Items>
       </Drawer>
 
-{/* Modal Logout */}
+      {/* Modal Logout */}
       <Modal
         show={isOpenModalLogout}
         size="md"
@@ -141,13 +141,16 @@ const SidebarLayout: FC<SidebarLayoutProps> = ({ children }) => {
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
-            <HiOutlineExclamationCircle size={20} className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+            <HiOutlineExclamationCircle
+              size={20}
+              className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200"
+            />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-            Are you sure you want to log out?
+              Are you sure you want to log out?
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleLogout}>
-                {"Yes, I'm sure"}
+                Yes
               </Button>
               <Button
                 color="gray"
