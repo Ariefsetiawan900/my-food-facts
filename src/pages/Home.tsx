@@ -42,7 +42,7 @@ const Home = () => {
     navigate(`?page=1&searchCategories=${event.target.value}`);
   };
 
-  const handlePageClick = (data: any) => {
+  const handlePageClick = (data: number) => {
     setPage(data);
     navigate(`?page=${data}&searchCategories=${searchCategoriesTag}`);
   };

@@ -10,7 +10,6 @@ const NotFound = () => {
     }
     return navigate('/login');
   };
-  console.log('user', isAuthenticated);
   return (
     <div className=" h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
