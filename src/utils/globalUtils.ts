@@ -8,8 +8,6 @@ export const getTextColorNovaGroupColor = (name: string) => {
       return 'success';
     case 'en:2-processed-culinary-ingredients ':
       return 'warning';
-    case 'maya':
-      return 'text-green-500';
     case 'en:4-ultra-processed-food-and-drink-products':
       return 'failure';
     default:
