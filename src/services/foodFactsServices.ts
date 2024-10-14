@@ -1,4 +1,5 @@
 import axiosConfig from './axiosConfig';
+import axios from 'axios';
 
 export const getAllFoodFacts = async (
   categories_tags: string,
@@ -30,6 +31,14 @@ export const getAllFoodFacts = async (
 };
 
 export const getDetailFoodFacts = async (id: number) => {
-  const response = await axiosConfig.get(`/product/${id}`);
-  return response.data;
+  try {
+    const response = await axiosConfig.get(`/product/${id}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data?.message || 'Product not found');
+    } else {
+      throw new Error('Product not found');
+    }
+  }
 };
