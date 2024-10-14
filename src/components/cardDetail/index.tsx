@@ -6,6 +6,7 @@ import { HiCalendar } from 'react-icons/hi';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { getTextColorNovaGroupColor } from '@/utils/globalUtils';
+import CardDynamic from '@/components/cardDynamic';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -137,9 +138,12 @@ const cardDetail: FC<ICardDetailProps> = ({
 
   if (!dataProduct || !dataProduct.product) {
     return (
-      <div className="text-center text-2xl font-bold text-white">
-        Data Not Available
-      </div>
+      <CardDynamic
+        title="Data Not Available"
+        body="Data Not Available"
+        buttonText="Go back Home"
+        onClick={() => navigate('/')}
+      />
     );
   }
   return (
