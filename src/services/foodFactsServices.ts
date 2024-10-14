@@ -11,7 +11,22 @@ export const getAllFoodFacts = async (
       page_size: 5,
     },
   });
-  return response.data;
+  try {
+    if (response.status === 500) {
+      throw new Error('Server Error');
+    }
+    return response.data;
+  } catch (error: unknown) {
+    if (typeof error === 'object' && error !== null && 'message' in error) {
+      const errorMessage = (error as { message: string }).message;
+      if (errorMessage.includes('timeout')) {
+        throw new Error('Request timed out');
+      }
+      throw new Error('Failed to fetch users');
+    } else {
+      throw new Error('An unexpected error occurred');
+    }
+  }
 };
 
 export const getDetailFoodFacts = async (id: number) => {
