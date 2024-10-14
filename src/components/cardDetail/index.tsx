@@ -253,9 +253,10 @@ const cardDetail: FC<ICardDetailProps> = ({
                     <Timeline.Content>
                       <Timeline.Time>2021</Timeline.Time>
                       <Timeline.Title>
-                        Grade : {dataProduct?.product.nutriscore[2023].grade}
+                        Grade :{' '}
+                        {dataProduct?.product.nutriscore[2023].grade || '-'}
                         <br /> Score :{' '}
-                        {dataProduct?.product.nutriscore[2021].score}
+                        {dataProduct?.product.nutriscore[2021].score || '-'}
                       </Timeline.Title>
                     </Timeline.Content>
                   </Timeline.Item>
@@ -264,9 +265,10 @@ const cardDetail: FC<ICardDetailProps> = ({
                     <Timeline.Content>
                       <Timeline.Time>2023</Timeline.Time>
                       <Timeline.Title>
-                        Grade : {dataProduct?.product.nutriscore[2023].grade}
+                        Grade :{' '}
+                        {dataProduct?.product.nutriscore[2023].grade || '-'}
                         <br /> Score :{' '}
-                        {dataProduct?.product.nutriscore[2021].score}
+                        {dataProduct?.product.nutriscore[2021].score || '-'}
                       </Timeline.Title>
                     </Timeline.Content>
                   </Timeline.Item>

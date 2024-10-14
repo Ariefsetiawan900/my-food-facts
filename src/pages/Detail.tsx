@@ -57,16 +57,20 @@ const Detail = () => {
         <Modal.Header>Nutriments</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
-            <List>
-              {Object.entries(
-                (data?.product.nutriments as INutriments) || {}
-              ).map(([key, value], index) => (
-                <List.Item className="capitalize" key={index}>
-                  <span className="font-medium"> {formatKey(key)}</span> :{' '}
-                  {value}
-                </List.Item>
-              ))}
-            </List>
+            {!data?.product.nutriments ? (
+              'Data not available'
+            ) : (
+              <List>
+                {Object.entries(
+                  (data?.product.nutriments as INutriments) || {}
+                ).map(([key, value], index) => (
+                  <List.Item className="capitalize" key={index}>
+                    <span className="font-medium"> {formatKey(key)}</span> :{' '}
+                    {value}
+                  </List.Item>
+                ))}
+              </List>
+            )}
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -85,16 +89,20 @@ const Detail = () => {
         <Modal.Header>Nutricscore Data</Modal.Header>
         <Modal.Body>
           <div className="space-y-6">
-            <List>
-              {Object.entries(
-                (data?.product.nutriscore_data as INutriscoreData) || {}
-              ).map(([key, value], index) => (
-                <List.Item className="capitalize" key={index}>
-                  <span className="font-medium"> {formatKey(key)}</span> :{' '}
-                  {value}
-                </List.Item>
-              ))}
-            </List>
+            {!data?.product.nutriscore_data ? (
+              'Data not available'
+            ) : (
+              <List>
+                {Object.entries(
+                  (data?.product.nutriscore_data as INutriscoreData) || {}
+                ).map(([key, value], index) => (
+                  <List.Item className="capitalize" key={index}>
+                    <span className="font-medium"> {formatKey(key)}</span> :{' '}
+                    {value}
+                  </List.Item>
+                ))}
+              </List>
+            )}
           </div>
         </Modal.Body>
         <Modal.Footer>
